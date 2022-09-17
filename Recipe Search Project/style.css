@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Nunito:wght@400;600&family=Poppins:wght@300&family=Rubik:wght@300&display=swap');
+
+
+/*search bar*/
+.search_bar{
+    margin-top: 50px;
+    margin-bottom: 10px;
+    display:flex;
+    justify-content: center;
+}
+
+.search_bar > input{
+  width:40%;
+  font-family: Poppins;
+}
+
+#search{
+  font-family: Poppins;
+}
+
+#search:hover{
+  color:white;
+  background-color: grey;
+  transition:0.5s;
+}
+
+/*note about API search limit*/
+#note{
+    text-align: center;
+    color: rgb(199, 199, 199);
+    font-size: 15px;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.card{
+    margin: 50px 100px 50px 100px;
+    box-shadow: 3px 3px 5px 5px;
+}
+
+.card-text{
+    font-weight:600;
+}
+/*area with the cards */
+#content_area{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/*message that displays when a search is invalid */
+#error{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 100px;
+}
+
+::-webkit-scrollbar {
+	width: .66vw;
+	background-color: #FAF5EF;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: slategrey;
+	border-radius: 5px;
+}
+
+/*css found online to bold the numbers in the list */
+ol {
+  counter-reset: item;
+}ol > li {
+  text-indent: -2em;
+  list-style-type: none;
+  counter-increment: item;
+}ol > li:before {
+
+  font-weight: bold;
+  content: counter(item) ". ";
+}
+
+footer{
+    text-align: center;
+    font-size: 10px;
+    margin-top: 100px;
+}

@@ -1,32 +1,50 @@
 document.addEventListener('DOMContentLoaded',function(){
     //variables lets us add a 'click' event listener to the search button
     let search_button = document.querySelector("#search");
+    let input = document.getElementById("input");
 
     //Used for API call
     const app_id = "b31e7135";
     const API_key = "786b08f450719fc8c50d24289d336e87";
 
     //makes it so pizza appears by deafult
-    fetch(`https://api.edamam.com/search?app_id=${app_id}&app_key=${API_key}&q=pizza`)
-    .then(response => response.json())
-    .then(data =>{
-        console.log(data);
-        use_data(data);
-    })
+    const default_search = "pizza"
+    call_API(app_id, API_key, default_search)
 
     //when the user hits search this function runs and makes the API call
     search_button.addEventListener("click",function(){
-        let text = document.getElementById("input");
-        console.log(text.value);
+        document.getElementById("content_area").style.display="flex";
+        document.querySelector("#error").style.display = "none"
+        input = document.getElementById("input");
+        input_value = input.value
 
-        fetch(`https://api.edamam.com/search?app_id=${app_id}&app_key=${API_key}&q=${text.value}`) //can use 10000 calls/month
+        call_API(app_id, API_key, input_value)
+    });
+    
+    //if the user hits enter white still using the seach bar it makes a API call
+    input.addEventListener("keypress", function(event){
+        if(event.key === "Enter"){
+            document.getElementById("content_area").style.display="flex";
+            document.querySelector("#error").style.display = "none"
+            input = document.getElementById("input");
+            input_value = input.value
+            call_API(app_id, API_key, input_value)
+        }
+    })
+
+    
+});
+
+
+//makes the API call
+function call_API(app_id, API_key, input_value){
+    fetch(`https://api.edamam.com/search?app_id=${app_id}&app_key=${API_key}&q=${input_value}`) //can use 10000 calls/month
         .then(response => response.json())
         .then(data =>{
             console.log(data);
             use_data(data);
         })
-    });
-});
+ }
 
 //this function uses the data from the API call and then displays it on the cards.
 function use_data(data){
@@ -34,6 +52,7 @@ function use_data(data){
 
     if(data.hits.length === 0){//displays a message if the API dosen't return a dish
         document.getElementById("content_area").style.display="none";
+        document.querySelector("#error").style.display = "block"
         document.querySelector("#error").innerHTML="Dish not found :("
     }
 

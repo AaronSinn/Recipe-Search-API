@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded',function(){
     let input = document.getElementById("input");
 
     //Used for API call
-    const app_id = "b31e7135";
-    const API_key = "786b08f450719fc8c50d24289d336e87";
+    const app_id = "";
+    const API_key = "";
 
     //makes it so pizza appears by deafult
     const default_search = "pizza"
